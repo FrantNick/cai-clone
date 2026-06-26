@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0D0D0D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>c.ai</title>
+    <link rel="stylesheet" href="/css/cai-theme.css">
+</head>
+<body>
+    <div id="cai-app" class="cai-app">
+        <div class="cai-views">
+
+            <!-- ========== HOME VIEW ========== -->
+            <section id="view-home" class="cai-view">
+                <header class="cai-topbar">
+                    <div class="cai-topbar-left">
+                        <span class="cai-logo">(c.ai)</span>
+                        <span class="cai-badge">Get (c.ai+)</span>
+                    </div>
+                    <div class="cai-topbar-right">
+                        <button class="cai-icon-btn" aria-label="Display">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+                        </button>
+                        <button class="cai-icon-btn" aria-label="Persona">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="cai-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                    <input id="home-search" type="text" placeholder="The Amazing Digital Circus 9" autocomplete="off">
+                </div>
+
+                <nav class="cai-tabs" id="home-tabs">
+                    <button class="cai-tab active" data-tab="for-you">For You</button>
+                    <button class="cai-tab" data-tab="following">Following</button>
+                    <button class="cai-tab" data-tab="trending">Trending</button>
+                    <button class="cai-tab" data-tab="scenes">Scenes</button>
+                    <button class="cai-tab" data-tab="featured">Featured</button>
+                    <button class="cai-tab" data-tab="groups">Groups</button>
+                </nav>
+
+                <div class="cai-scroll" id="home-scroll">
+                    <div id="home-grid" class="cai-grid"></div>
+                </div>
+            </section>
+
+            <!-- ========== CHATS VIEW ========== -->
+            <section id="view-chats" class="cai-view">
+                <header class="cai-tabs-header">
+                    <span class="cai-tab-text active" data-chat-tab="chats">Chats</span>
+                    <span class="cai-tab-text" data-chat-tab="gallery">Gallery</span>
+                    <div class="cai-topbar-right">
+                        <button class="cai-icon-btn" aria-label="Search">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                        </button>
+                        <button class="cai-icon-btn" aria-label="Display">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+                        </button>
+                        <button class="cai-icon-btn" aria-label="Persona">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="cai-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                    <input id="chats-search" type="text" placeholder="Search" autocomplete="off">
+                </div>
+
+                <div class="cai-scroll">
+                    <div id="chats-list" class="cai-chat-list"></div>
+                </div>
+            </section>
+
+            <!-- ========== CHAT CONVERSATION VIEW ========== -->
+            <section id="view-chat" class="cai-view cai-view-fullbleed">
+                <header class="cai-chat-topbar">
+                    <button class="cai-back-btn" id="chat-back" aria-label="Back">←</button>
+                    <div class="cai-avatar cai-avatar-md" id="chat-avatar"></div>
+                    <div class="cai-chat-title" id="chat-title">Character</div>
+                    <button class="cai-icon-btn" id="chat-memory-btn" aria-label="Memory" title="Memory">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3a4 4 0 0 0-4 4 4 4 0 0 0-1 7.5A4 4 0 0 0 8 21h1V3z"/><path d="M15 3a4 4 0 0 1 4 4 4 4 0 0 1 1 7.5A4 4 0 0 1 16 21h-1V3z"/></svg>
+                    </button>
+                    <button class="cai-icon-btn" aria-label="Voice">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M6 8v8M18 8v8M3 11v2M21 11v2"/></svg>
+                    </button>
+                    <button class="cai-icon-btn" aria-label="Group">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M15 20c0-2 2-4 4-4"/></svg>
+                    </button>
+                </header>
+
+                <div class="cai-disclaimer">
+                    <svg class="cai-disclaimer-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 5l8 14H4l8-14zm-1 5v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>
+                    <span>This is not a real person or licensed professional. Nothing said here is a substitute for professional advice, diagnosis, or treatment.</span>
+                </div>
+
+                <div class="cai-author-credit" id="chat-author-credit"></div>
+
+                <div class="cai-messages" id="chat-messages"></div>
+
+                <div class="cai-input-bar">
+                    <div class="cai-input-pill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--cai-text-tertiary)"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        <textarea id="chat-input" rows="1" placeholder="Send a message"></textarea>
+                        <div class="cai-input-icons">
+                            <button class="cai-icon-btn" aria-label="Image" style="color: var(--cai-text-tertiary)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/></svg>
+                            </button>
+                            <button class="cai-icon-btn" aria-label="Sticker" style="color: var(--cai-text-tertiary)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/><path d="M9 14c1 1.5 2 2 3 2s2-.5 3-2"/></svg>
+                            </button>
+                            <button class="cai-send-btn" id="chat-send" aria-label="Send">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l18-8-7 18-3-7-8-3z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cai-input-footer">This is A.I. and not a real person. Treat everything it says as fiction ∨</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom nav (shared by Home + Chats) -->
+        <nav id="cai-nav" class="cai-nav">
+            <button class="cai-nav-item" data-nav="home" aria-label="Home">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V11z"/></svg>
+                <span id="cai-nav-badge" class="cai-nav-badge cai-hidden">0</span>
+            </button>
+            <button class="cai-nav-item" data-nav="chats" aria-label="Chats">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-12.5 6.7L3 21l2.3-5.5A8 8 0 1 1 21 12z"/></svg>
+            </button>
+            <button class="cai-nav-item cai-nav-create" data-nav="create" aria-label="Create">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            </button>
+            <button class="cai-nav-item" data-nav="library" aria-label="Library">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="14" height="14" rx="2"/><rect x="7" y="3" width="14" height="14" rx="2"/></svg>
+            </button>
+            <button class="cai-nav-item" data-nav="profile" aria-label="Profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+            </button>
+        </nav>
+
+        <!-- Memory sheet -->
+        <div id="memory-backdrop" class="cai-sheet-backdrop"></div>
+        <aside id="memory-sheet" class="cai-sheet" role="dialog" aria-label="Memory">
+            <div class="cai-sheet-handle"></div>
+            <h3>Memory</h3>
+
+            <div class="cai-toggle-row">
+                <span class="cai-toggle-label">Remember across all chats</span>
+                <div class="cai-switch" id="memory-enable-switch"></div>
+            </div>
+
+            <label>Mode</label>
+            <div class="cai-radio-list" id="memory-mode-list">
+                <div class="cai-radio" data-mode="shared">
+                    <span class="cai-radio-dot"></span>
+                    <span class="cai-radio-text">Shared memory<small>All chats with this character share one memory.</small></span>
+                </div>
+                <div class="cai-radio" data-mode="isolated">
+                    <span class="cai-radio-dot"></span>
+                    <span class="cai-radio-text">Isolated memory<small>This chat has its own separate memory.</small></span>
+                </div>
+                <div class="cai-radio" data-mode="off">
+                    <span class="cai-radio-dot"></span>
+                    <span class="cai-radio-text">No persistent memory<small>Only in-session context; no cross-session recall.</small></span>
+                </div>
+            </div>
+
+            <label>Summary</label>
+            <textarea id="memory-summary" placeholder="(no summary yet)"></textarea>
+
+            <label>Facts</label>
+            <ul id="memory-facts" class="cai-fact-list"></ul>
+
+            <div class="cai-btn-row">
+                <button class="cai-btn" id="memory-close">Close</button>
+                <button class="cai-btn cai-btn-danger" id="memory-clear">Clear Memory</button>
+            </div>
+        </aside>
+    </div>
+
+    <script type="module" src="/scripts/cai/main.js"></script>
+</body>
+</html>
