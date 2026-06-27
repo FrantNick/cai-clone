@@ -180,6 +180,18 @@ async function buildPromptMessages(memoryPreamble) {
         msgs.push({ role: 'system', content: substituteMacros(ch.post_history_instructions) });
     }
 
+    // Guard: the API rejects an empty messages array. Ensure at least a minimal system message.
+    if (!msgs.length) {
+        msgs.push({ role: 'system', content: `You are ${charName()}.` });
+    }
+
+    // Guard: last message must be from user (not assistant/system) for chat completion.
+    // If the chat is all assistant messages (e.g. only a greeting), append a continuation cue.
+    const lastRole = msgs[msgs.length - 1]?.role;
+    if (lastRole !== 'user') {
+        msgs.push({ role: 'user', content: 'Continue.' });
+    }
+
     return msgs;
 }
 
