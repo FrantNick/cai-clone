@@ -198,17 +198,23 @@ async function buildPromptMessages(memoryPreamble) {
 // --------- Chat completion call ---------
 
 async function callChatCompletion(messages, { stream = false, signal } = {}) {
-    const settings = state.settingsCache || {};
+    const raw = state.settingsCache || {};
+    // getUserSettings() returns { settings: "<JSON string>" } — parse the inner string
+    const settings = typeof raw.settings === 'string' ? JSON.parse(raw.settings) : (raw.settings || raw || {});
     const oai = settings.oai_settings || settings.openai_setting || settings.openai_settings || {};
-    const source = oai.chat_completion_source || oai.source || 'openrouter';
-    const model = oai.openrouter_model || oai.model || oai.openai_model || 'openrouter/auto';
+    const source = oai.chat_completion_source || settings.chat_completion_source || oai.source || 'openai';
+    const model = oai.openai_model || settings.openai_model || oai.openrouter_model || oai.model || 'o4-mini';
 
+    // o1/o3/o4 reasoning models use max_completion_tokens instead of max_tokens
+    const isReasoningModel = /^o\d/i.test(model);
+    const maxTokens = oai.openai_max_tokens || oai.max_tokens || 1024;
     const payload = {
         messages,
         chat_completion_source: source,
         model,
-        max_tokens: oai.openai_max_tokens || oai.max_tokens || 1024,
-        temperature: typeof oai.temp_openai === 'number' ? oai.temp_openai : (oai.temperature ?? 0.9),
+        ...(isReasoningModel
+            ? { max_completion_tokens: maxTokens }
+            : { max_tokens: maxTokens, temperature: typeof oai.temp_openai === 'number' ? oai.temp_openai : (oai.temperature ?? 0.9) }),
         stream,
         stream_options: stream ? { include_usage: true } : undefined,
     };
